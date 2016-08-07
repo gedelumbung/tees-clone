@@ -52,19 +52,19 @@
               </button>
             </div>
             <h4>Select Type of Clothes</h4>
-            <select class="form-control">
-              <option>Kaos Pria</option>
-              <option>Kaos Wanita</option>
-              <option>Kaos Anak-Anak</option>
+            <select class="form-control" id="clothes_type">
+              <option value="men">Kaos Pria</option>
+              <option value="women">Kaos Wanita</option>
+              <option value="kids">Kaos Anak-Anak</option>
             </select>
             <hr>
             <h4>Select Color</h4>
-            <select class="form-control">
-              <option>Merah</option>
-              <option>Hitam</option>
-              <option>Putih</option>
-              <option>Kuning</option>
-              <option>Biru</option>
+            <select class="form-control" id="clothes_color">
+              <option value="red">Red</option>
+              <option value="black">Black</option>
+              <option value="white">White</option>
+              <option value="yellow">Yellow</option>
+              <option value="blue">Blue</option>
             </select>
           </div>
 
@@ -132,6 +132,26 @@
             <input type="file" class="form-control" name="">
           </div>
           <div class="column col-sm-9 col-xs-11" id="main">
+            <div class="toolbar-placeholder">                       
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-warning">
+                  <i class="fa fa-arrow-circle-down"></i>
+                </button>
+                <button type="button" class="btn btn-warning">
+                  <i class="fa fa-arrow-circle-up"></i>
+                </button>
+                <button type="button" id="btn-flip" class="btn btn-warning">
+                  <i class="fa fa-retweet"></i> Flip Side
+                </button>
+                <button type="button" class="btn btn-warning">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-warning">
+                  <i class="fa fa-remove"></i>
+                </button>
+              </div>                                                
+            </div>
+            <div class="bg-template" id="bg-template"></div>
           </div>
       </div>
     </div>
@@ -139,6 +159,20 @@
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript">
+    var clothesType = 'men';
+    var clothesColor = 'red';
+    var currentSide = 'front';
+
+    function init(){
+      closeSidebarContent();
+      loadDefaultTemplate();
+    }
+
+    function loadDefaultTemplate(){
+      var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
+      $('#bg-template').html(bgTemplate);
+    }
+
     function closeSidebarContent(){
       $('#sidebar-content-product').hide();
       $('#sidebar-content-text').hide();
@@ -170,6 +204,35 @@
       $('#sidebar-content-image').show();
     });
 
-    closeSidebarContent();
+    $('#clothes_type').change(function(){
+      clothesType = $(this).val();
+      if(clothesColor !== ''){
+        var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
+        $('#bg-template').html(bgTemplate);
+      }
+    });
+
+    $('#clothes_color').change(function(){
+      clothesColor = $(this).val();
+      if(clothesType !== ''){
+        var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
+        $('#bg-template').html(bgTemplate);
+      }
+    });
+
+    $('#btn-flip').click(function(){
+      if(currentSide === 'back'){
+        currentSide = 'front';
+      }
+      else{
+        currentSide = 'back';
+      }
+
+      var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
+      $('#bg-template').html(bgTemplate);
+      
+    });
+
+    init();
   </script>
 </html>
