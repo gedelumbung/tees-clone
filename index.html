@@ -38,21 +38,138 @@
           <!-- sidebar -->
           <div class="column col-sm-3 col-xs-1 sidebar-offcanvas" id="sidebar">
               <ul class="nav sidebar-nav" id="menu">
-                  <li><a href="#"><i class="fa fa-wrench fa-2x"></i></a></li>
-                  <li><a href="#"><i class="fa fa-font fa-2x"></i></a></li>
-                  <li><a href="#"><i class="fa fa-star fa-2x"></i></a></li>
-                  <li><a href="#"><i class="fa fa-image fa-2x"></i></a></li>
+                  <li id="btn-product"><a href="#"><i class="fa fa-wrench fa-2x"></i><span>Product and Color</span></a></li>
+                  <li id="btn-text"><a href="#"><i class="fa fa-font fa-2x"></i><span>Add Text</span></a></li>
+                  <li id="btn-shape"><a href="#"><i class="fa fa-star fa-2x"></i><span>Add Shape </span></a></li>
+                  <li id="btn-image"><a href="#"><i class="fa fa-image fa-2x"></i><span>Image Upload</span></a></li>
               </ul>
           </div>
-          <!-- /sidebar -->
+          <div class="column col-sm-3 col-xs-1 sidebar-offcanvas-content sidebar-content" id="sidebar-content-product">
+            <div editor-back-button="">
+              <button type="button" class="btn btn-secondary btn-close" title="Close" id="btn-close-sidebar-product">
+                <i class="fa fa-caret-left"></i> 
+                Back
+              </button>
+            </div>
+            <h4>Select Type of Clothes</h4>
+            <select class="form-control">
+              <option>Kaos Pria</option>
+              <option>Kaos Wanita</option>
+              <option>Kaos Anak-Anak</option>
+            </select>
+            <hr>
+            <h4>Select Color</h4>
+            <select class="form-control">
+              <option>Merah</option>
+              <option>Hitam</option>
+              <option>Putih</option>
+              <option>Kuning</option>
+              <option>Biru</option>
+            </select>
+          </div>
 
-          <!-- main right col -->
+          <div class="column col-sm-3 col-xs-1 sidebar-offcanvas-content sidebar-content" id="sidebar-content-text">
+            <div editor-back-button="">
+              <button type="button" class="btn btn-secondary btn-close" title="Close" id="btn-close-sidebar-text">
+                <i class="fa fa-caret-left"></i> 
+                Back
+              </button>
+            </div>
+            <h4>Add Text</h4>
+            <textarea class="form-control" rows="5" placeholder="Add text here...."></textarea>
+            <button type="button" class="btn btn-primary btn-block">
+              Add Text 
+            </button>
+          </div>
+
+          <div class="column col-sm-3 col-xs-1 sidebar-offcanvas-content sidebar-content" id="sidebar-content-shape">
+            <div editor-back-button="">
+              <button type="button" class="btn btn-secondary btn-close" title="Close" id="btn-close-sidebar-shape">
+                <i class="fa fa-caret-left"></i> 
+                Back
+              </button>
+            </div>
+            <h4>Add Shape</h4>
+            <div class="row shape">
+              <div class="col-md-4">
+                <span class="btn-add-shape square-shape">
+                  <div class="square"></div>
+                  Square
+                </span>
+              </div>
+              <div class="col-md-4">
+                <span class="btn-add-shape circle-shape">
+                  <div class="circle"></div>
+                  Circle
+                </span>
+              </div>
+              <div class="col-md-4">
+                <span class="btn-add-shape triangle-shape">
+                  <div class="triangle"></div>
+                  Triangle
+                </span>
+              </div>
+            </div>
+            <hr>
+            <h4>Select Color</h4>
+            <select class="form-control">
+              <option>Merah</option>
+              <option>Hitam</option>
+              <option>Putih</option>
+              <option>Kuning</option>
+              <option>Biru</option>
+            </select>
+          </div>
+
+          <div class="column col-sm-3 col-xs-1 sidebar-offcanvas-content sidebar-content" id="sidebar-content-image">
+            <div editor-back-button="">
+              <button type="button" class="btn btn-secondary btn-close" title="Close" id="btn-close-sidebar-image">
+                <i class="fa fa-caret-left"></i> 
+                Back
+              </button>
+            </div>
+            <h4>Image Upload</h4>
+            <input type="file" class="form-control" name="">
+          </div>
           <div class="column col-sm-9 col-xs-11" id="main">
           </div>
-          <!-- /main -->
       </div>
     </div>
   </body>
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    function closeSidebarContent(){
+      $('#sidebar-content-product').hide();
+      $('#sidebar-content-text').hide();
+      $('#sidebar-content-shape').hide();
+      $('#sidebar-content-image').hide();
+    }
+
+    $('#btn-close-sidebar-product, #btn-close-sidebar-text, #btn-close-sidebar-shape, #btn-close-sidebar-image').click(function(){
+      closeSidebarContent();
+    });
+
+    $('#btn-product').click(function(){
+      closeSidebarContent();
+      $('#sidebar-content-product').show();
+    });
+
+    $('#btn-text').click(function(){
+      closeSidebarContent();
+      $('#sidebar-content-text').show();
+    });
+
+    $('#btn-shape').click(function(){
+      closeSidebarContent();
+      $('#sidebar-content-shape').show();
+    });
+
+    $('#btn-image').click(function(){
+      closeSidebarContent();
+      $('#sidebar-content-image').show();
+    });
+
+    closeSidebarContent();
+  </script>
 </html>
