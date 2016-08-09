@@ -45,7 +45,7 @@ html, body {
 
 .bg-template{
   text-align: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .toolbar-placeholder {
@@ -55,7 +55,7 @@ html, body {
   text-align: center;
   min-height: 32px;
   z-index: 1;
-  margin-top: 70px;
+  margin-top: 60px;
 }
 .btn-group, .btn-group-vertical {
   position: relative;
