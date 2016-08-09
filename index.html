@@ -151,8 +151,9 @@
                 </button>
               </div>                                                
             </div>
-            <div style="position:absolute; left:50%;    margin-top: 100px;">
-              <canvas width="300" height="400" id="front-canvas" style="border: 1px dashed #999;"></canvas>
+            <div class="outer">
+              <canvas width="270" height="350" id="front-canvas" class="inner" style="border: 1px dashed #999;"></canvas>
+              <canvas width="270" height="350" id="back-canvas" class="inner" style="border: 1px dashed #999;"></canvas>
             </div>
             <div class="bg-template" id="bg-template"></div>
           </div>
@@ -169,6 +170,12 @@
     function init(){
       closeSidebarContent();
       loadDefaultTemplate();
+      initCanvas();
+    }
+
+    function initCanvas(){
+      $('#front-canvas').show();
+      $('#back-canvas').hide();
     }
 
     function loadDefaultTemplate(){
@@ -224,12 +231,14 @@
     });
 
     $('#btn-flip').click(function(){
+      $('#'+currentSide+'-canvas').hide();
       if(currentSide === 'back'){
         currentSide = 'front';
       }
       else{
         currentSide = 'back';
       }
+      $('#'+currentSide+'-canvas').show();
 
       var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
       $('#bg-template').html(bgTemplate);
