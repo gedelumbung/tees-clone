@@ -162,6 +162,7 @@
   </body>
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bower_components/fabric.js/dist/fabric.min.js"></script>
   <script type="text/javascript">
     var clothesType = 'men';
     var clothesColor = 'red';
@@ -176,6 +177,9 @@
     function initCanvas(){
       $('#front-canvas').show();
       $('#back-canvas').hide();
+
+      var frontSide = new fabric.Canvas("front-canvas");
+      var backSide = new fabric.Canvas("back-canvas");
     }
 
     function loadDefaultTemplate(){
