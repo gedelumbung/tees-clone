@@ -224,3 +224,7 @@ position: absolute;
   width: 0px!important;
   height: 0px!important;
 }
+
+canvas:hover{
+  border: 2px dashed #999;
+}

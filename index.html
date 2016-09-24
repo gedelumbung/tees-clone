@@ -76,8 +76,55 @@
               </button>
             </div>
             <h4>Add Text</h4>
-            <textarea class="form-control" rows="5" placeholder="Add text here...."></textarea>
-            <button type="button" class="btn btn-primary btn-block">
+            <textarea class="form-control" rows="5" id="txt-add-text" placeholder="Add text here...."></textarea>
+            <h4>Font Type</h4>
+            <select class="form-control" id="font-type">
+              <option value="Arial">Arial</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Roboto">Roboto</option>
+              <option value="Open Sans">Open Sans</option>
+              <option value="PT Sans">PT Sans</option>
+              <option value="Droid Sans">Droid Sans</option>
+              <option value="Titillium Web">Titillium Web</option>
+              <option value="Poiret One">Poiret One</option>
+              <option value="Oxygen">Oxygen</option>
+              <option value="Lobster">Lobster</option>
+              <option value="Shadows Into Light">Shadows Into Light</option>
+              <option value="Orbitron">Orbitron</option>
+              <option value="Righteous">Righteous</option>
+              <option value="Architects Daughter">Architects Daughter</option>
+              <option value="Kaushan Script">Kaushan Script</option>
+              <option value="Courgette">Courgette</option>
+              <option value="Rock Salt">Rock Salt</option>
+              <option value="Aldrich">Aldrich</option>
+            </select>
+            <h4>Font Color</h4>
+            <select class="form-control" id="cont-color">
+              <option value="#000">Black</option>
+              <option value="#fff">White</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="yellow">Yellow</option>
+              <option value="blue">Blue</option>
+              <option value="purple">Purple</option>
+            </select>
+            <h4>Text Alignment</h4>
+            <select class="form-control" id="text_align">
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+              <option value="justify">Justify</option>
+            </select>
+            <h4>Text Decoration</h4>
+            <div style="text-align: left; padding: 10px 20px;">
+                <input type="checkbox" id="text_bold">
+                <label for="text_bold">Bold</label><br>
+                <input type="checkbox" id="text_italic">
+                <label for="text_italic">Italic</label><br>
+                <input type="checkbox" id="text_underline">
+                <label for="text_underline">Underline</label>
+            </div>
+            <button type="button" id="btn-add-text" class="btn btn-primary btn-block">
               Add Text 
             </button>
           </div>
@@ -113,11 +160,13 @@
             <hr>
             <h4>Select Color</h4>
             <select class="form-control">
-              <option>Merah</option>
-              <option>Hitam</option>
-              <option>Putih</option>
-              <option>Kuning</option>
-              <option>Biru</option>
+              <option value="#000">Black</option>
+              <option value="#fff">White</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="yellow">Yellow</option>
+              <option value="blue">Blue</option>
+              <option value="purple">Purple</option>
             </select>
           </div>
 
@@ -132,7 +181,7 @@
             <input type="file" class="form-control" name="">
           </div>
           <div class="column col-sm-9 col-xs-11" id="main">
-            <div class="toolbar-placeholder">                       
+            <div class="toolbar-placeholder">
               <div class="btn-group" role="group">
                 <button type="button" class="btn btn-warning">
                   <i class="fa fa-arrow-circle-down"></i>
@@ -140,11 +189,8 @@
                 <button type="button" class="btn btn-warning">
                   <i class="fa fa-arrow-circle-up"></i>
                 </button>
-                <button type="button" id="btn-flip" class="btn btn-warning">
-                  <i class="fa fa-retweet"></i> Flip Side
-                </button>
                 <button type="button" class="btn btn-warning">
-                  <i class="fa fa-pencil"></i>
+                  <i class="fa fa-retweet"></i>
                 </button>
                 <button type="button" class="btn btn-warning">
                   <i class="fa fa-remove"></i>
@@ -152,8 +198,8 @@
               </div>                                                
             </div>
             <div class="outer">
-              <canvas width="270" height="350" id="front-canvas" class="inner" style="border: 1px dashed #999;"></canvas>
-              <canvas width="270" height="350" id="back-canvas" class="inner" style="border: 1px dashed #999;"></canvas>
+              <canvas width="270" height="350" id="front-canvas" class="inner"></canvas>
+              <canvas width="270" height="350" id="back-canvas" class="inner"></canvas>
             </div>
             <div class="bg-template" id="bg-template"></div>
           </div>
@@ -163,92 +209,5 @@
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="bower_components/fabric.js/dist/fabric.min.js"></script>
-  <script type="text/javascript">
-    var clothesType = 'men';
-    var clothesColor = 'red';
-    var currentSide = 'front';
-
-    function init(){
-      closeSidebarContent();
-      loadDefaultTemplate();
-      initCanvas();
-    }
-
-    function initCanvas(){
-      $('#front-canvas').show();
-      $('#back-canvas').hide();
-
-      var frontSide = new fabric.Canvas("front-canvas");
-      var backSide = new fabric.Canvas("back-canvas");
-    }
-
-    function loadDefaultTemplate(){
-      var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
-      $('#bg-template').html(bgTemplate);
-    }
-
-    function closeSidebarContent(){
-      $('#sidebar-content-product').hide();
-      $('#sidebar-content-text').hide();
-      $('#sidebar-content-shape').hide();
-      $('#sidebar-content-image').hide();
-    }
-
-    $('#btn-close-sidebar-product, #btn-close-sidebar-text, #btn-close-sidebar-shape, #btn-close-sidebar-image').click(function(){
-      closeSidebarContent();
-    });
-
-    $('#btn-product').click(function(){
-      closeSidebarContent();
-      $('#sidebar-content-product').show();
-    });
-
-    $('#btn-text').click(function(){
-      closeSidebarContent();
-      $('#sidebar-content-text').show();
-    });
-
-    $('#btn-shape').click(function(){
-      closeSidebarContent();
-      $('#sidebar-content-shape').show();
-    });
-
-    $('#btn-image').click(function(){
-      closeSidebarContent();
-      $('#sidebar-content-image').show();
-    });
-
-    $('#clothes_type').change(function(){
-      clothesType = $(this).val();
-      if(clothesColor !== ''){
-        var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
-        $('#bg-template').html(bgTemplate);
-      }
-    });
-
-    $('#clothes_color').change(function(){
-      clothesColor = $(this).val();
-      if(clothesType !== ''){
-        var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
-        $('#bg-template').html(bgTemplate);
-      }
-    });
-
-    $('#btn-flip').click(function(){
-      $('#'+currentSide+'-canvas').hide();
-      if(currentSide === 'back'){
-        currentSide = 'front';
-      }
-      else{
-        currentSide = 'back';
-      }
-      $('#'+currentSide+'-canvas').show();
-
-      var bgTemplate = '<img src="images/clothes/'+clothesType+'/'+clothesColor+'-'+currentSide+'.png">';
-      $('#bg-template').html(bgTemplate);
-      
-    });
-
-    init();
-  </script>
+  <script type="text/javascript" src="js/app.js"></script>
 </html>
