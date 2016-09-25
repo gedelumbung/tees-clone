@@ -11,6 +11,30 @@ var backSide = new fabric.Canvas("back-canvas");
 function init(){
   closeSidebarContent();
   loadDefaultTemplate();
+
+
+  WebFont.load({
+    google : {
+      families : [
+          'Roboto',
+          'Open Sans',
+          'PT Sans',
+          'Droid Sans',
+          'Titillium Web',
+          'Poiret One',
+          'Oxygen',
+          'Lobster',
+          'Shadows Into Light',
+          'Orbitron',
+          'Righteous',
+          'Architects Daughter',
+          'Kaushan Script',
+          'Courgette',
+          'Rock Salt',
+          'Aldrich'
+       ]
+    }
+  });
 }
 
 function loadDefaultTemplate(){
