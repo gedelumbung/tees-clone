@@ -109,22 +109,42 @@ $("#btn-add-text").click(function(){
 
   if(input_text !== '')
   {
-      var customText = new fabric.Text(input_text, {
-          fontFamily: $('#font-type').val(),
-          left: 10,
-          top: 10,
-          fontSize: 20,
-          textAlign: $('#text-align').val(),
-          fill: $('#font-color').val()
-      });
+    var fontWeight = '';
+    var fontStyle = '';
+    var textDecoration = '';
 
-      if(currentSide){
-          frontSide.add(customText);
-      }
-      else{
-          backSide.add(customText);
-      }
-      $('#txt-add-text').val('');
+    if($("#text-bold").is(':checked')){
+      fontWeight = 'bold'
+    }
+
+    if($("#text-italic").is(':checked')){
+      fontStyle = 'italic'
+    }
+
+    if($("#text-underline").is(':checked')){
+      textDecoration = 'underline'
+    }
+
+
+    var customText = new fabric.Text(input_text, {
+        fontFamily: $('#font-type').val(),
+        left: 10,
+        top: 10,
+        fontSize: 20,
+        textAlign: $('#text-align').val(),
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        textDecoration: textDecoration,
+        fill: $('#font-color').val()
+    });
+
+    if(currentSide){
+        frontSide.add(customText);
+    }
+    else{
+        backSide.add(customText);
+    }
+    $('#txt-add-text').val('');
   }
 });
 
