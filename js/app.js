@@ -2,18 +2,15 @@ var clothesType = 'men';
 var clothesColor = 'red';
 var currentSide = 'front';
 
+$('#front-canvas').show();
+$('#back-canvas').hide();
+
+var frontSide = new fabric.Canvas("front-canvas");
+var backSide = new fabric.Canvas("back-canvas");
+
 function init(){
   closeSidebarContent();
   loadDefaultTemplate();
-  initCanvas();
-}
-
-function initCanvas(){
-  $('#front-canvas').show();
-  $('#back-canvas').hide();
-
-  var frontSide = new fabric.Canvas("front-canvas");
-  var backSide = new fabric.Canvas("back-canvas");
 }
 
 function loadDefaultTemplate(){
@@ -89,24 +86,21 @@ $("#btn-add-text").click(function(){
   if(input_text !== '')
   {
       var customText = new fabric.Text(input_text, {
-          fontFamily: $('#font_type').val(),
+          fontFamily: $('#font-type').val(),
           left: 10,
           top: 10,
           fontSize: 20,
-          textAlign: $('#text_align').val(),
-          fill: $('#text_color').val()
+          textAlign: $('#text-align').val(),
+          fill: $('#font-color').val()
       });
 
-      if($isFront){
-          side_1.add(customText);
-          $counterFrontSide++;
+      if(currentSide){
+          frontSide.add(customText);
       }
       else{
-          side_2.add(customText);
-          $counterBackSide++;
+          backSide.add(customText);
       }
-      $('#text_input').val('');
-      newTextCounter++;
+      $('#txt-add-text').val('');
   }
 });
 
